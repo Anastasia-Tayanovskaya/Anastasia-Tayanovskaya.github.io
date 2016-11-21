@@ -12,50 +12,25 @@ var Article = function () {
 	}
 
 	_createClass(Article, [{
-		key: 'insertData',
-		value: function insertData() {
-			var article = document.createElement('article'),
-			    articleLink = document.createElement('a'),
-			    titleElement = document.createElement('h2'),
-			    headerElement = document.createElement('header'),
-			    image = document.createElement('img'),
-			    articleAuthorWrapper = document.createElement('p'),
-			    descriptionElement = document.createElement('p'),
-			    publishedDateElement = document.createElement('span'),
-			    authorElement = document.createElement('span');
+		key: 'insertDataIntoTemplate',
+		value: function insertDataIntoTemplate(tmplContent) {
+			var articleLink = tmplContent.querySelector('.article-link'),
+			    titleElement = tmplContent.querySelector('h2'),
+			    image = tmplContent.querySelector('img'),
+			    descriptionElement = tmplContent.querySelector('.article-description'),
+			    publishedDateElement = tmplContent.querySelector('.article-published-date'),
+			    authorElement = tmplContent.querySelector('.article-author');
 
 			articleLink.setAttribute('href', this.url);
-			articleLink.setAttribute('target', '_blank');
-			articleLink.classList.add('class', 'article-link');
-
-			article.classList.add('news');
-			article.appendChild(articleLink);
-
-			headerElement.appendChild(titleElement);
-			titleElement.classList.add('article-title');
 			titleElement.textContent = this.title;
 
-			authorElement.classList.add('article-author');
-			authorElement.textContent = this.author || 'Unknown';
-
-			articleAuthorWrapper.innerHTML = 'Written by ';
-			articleAuthorWrapper.appendChild(authorElement);
-
 			image.setAttribute('src', this.urlToImage);
-
-			publishedDateElement.classList.add('article-published-date');
+			descriptionElement.textContent = this.description;
 			publishedDateElement.textContent = new Date(this.publishedAt);
 
-			descriptionElement.classList.add('article-description');
-			descriptionElement.textContent = this.description;
+			authorElement.textContent = this.author || 'Unknown';
 
-			articleLink.appendChild(headerElement);
-			articleLink.appendChild(articleAuthorWrapper);
-			articleLink.appendChild(image);
-			articleLink.appendChild(publishedDateElement);
-			articleLink.appendChild(descriptionElement);
-
-			return article;
+			return document.importNode(tmplContent, true);
 		}
 	}]);
 

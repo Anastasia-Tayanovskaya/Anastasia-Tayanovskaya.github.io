@@ -21,10 +21,9 @@ var Source = function () {
 
 			this.element = document.createElement('li');
 			this.element.textContent = sourceName;
-
-			this.element.setAttribute('data-source-id', sourceId);
-			this.element.setAttribute('data-source-name', sourceName);
-			this.element.setAttribute('data-source-image', sourceImageSmall);
+			this.element.dataset.sourceId = sourceId;
+			this.element.dataset.sourceName = sourceName;
+			this.element.dataset.sourceImageSmall = sourceImageSmall;
 		}
 	}]);
 

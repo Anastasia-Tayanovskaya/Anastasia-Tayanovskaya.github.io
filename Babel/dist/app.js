@@ -46,7 +46,7 @@
 				activeListElement.classList.remove('active');
 
 				target.classList.add('active');
-				source = target.getAttribute('data-source-id');
+				source = target.dataset.sourceId;
 				articlesUrl = updateArticleUrl();
 				requester.getResponseFromUrl(articlesUrl).then(onNewsListLoaded, onError);
 
@@ -63,7 +63,7 @@
 
 		articles.forEach(function (article) {
 			var newsArticle = new Article(article);
-			var articleWithData = newsArticle.insertData();
+			var articleWithData = newsArticle.insertDataIntoTemplate(articleTmplContent);
 			documentFragment.appendChild(articleWithData);
 		});
 
